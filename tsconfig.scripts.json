@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist/scripts"
+  },
+  "include": [
+    "src/tasks/**/*.ts",
+    "src/common/**/*.ts",
+    "src/config/**/*.ts",
+    "src/media/**/*.ts",
+    "src/utils/**/*.ts"
+  ]
+}

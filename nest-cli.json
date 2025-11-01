@@ -1,0 +1,10 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "monorepo": false,
+  "entryFile": "main",
+  "compilerOptions": {
+    "assets": [],
+    "watchAssets": true
+  }
+}

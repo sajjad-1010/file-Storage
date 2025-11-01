@@ -1,0 +1,78 @@
+{
+  "info": {
+    "_postman_id": "9f9040f6-37b3-4a1d-8e53-6c73f5b0b5b1",
+    "name": "File Storage Service",
+    "description": "Postman collection for testing the File Storage upload microservice.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Upload Media",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{uploadToken}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/upload",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "upload"
+          ]
+        },
+        "description": "Stream a media file to the File Storage service. The JWT must contain required claims (`sub`, `kind`, `maxSize`, `exp`, `maxVideoSec`)."
+      },
+      "response": []
+    },
+    {
+      "name": "Get Media Metadata",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/media/{{sha}}/meta",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "media",
+            "{{sha}}",
+            "meta"
+          ]
+        },
+        "description": "Fetch derived metadata for a stored object using its SHA-256 hash. Auth requirement depends on configuration."
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:4000"
+    },
+    {
+      "key": "uploadToken",
+      "value": ""
+    },
+    {
+      "key": "sha",
+      "value": ""
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  file-storage:
+    build:
+      context: ../..
+      dockerfile: docs/docker/Dockerfile
+    env_file:
+      - ../../.env
+    volumes:
+      - file-storage-data:/data/storage
+    ports:
+      - "4000:4000"
+    depends_on:
+      - redis
+
+  nginx:
+    image: nginx:1.27-alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ../nginx.conf.sample:/etc/nginx/conf.d/default.conf:ro
+      - file-storage-data:/data/storage:ro
+    depends_on:
+      - file-storage
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  file-storage-data:
